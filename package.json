@@ -1,0 +1,31 @@
+{
+  "name": "enb-autopolyfiller",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "npm run-script jshint && npm run-script check-style",
+    "jshint": "jshint .",
+    "check-style": "jscs -c node_modules/enb-validate-code/jscs.json techs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/enb-make/enb-autopolyfiller.git"
+  },
+  "author": "Marat Dulin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enb-make/enb-autopolyfiller/issues"
+  },
+  "homepage": "https://github.com/enb-make/enb-autopolyfiller",
+  "dependencies": {
+    "vow": "~0.4.1",
+    "autopolyfiller": "^1.0.10"
+  },
+  "peerDependencies": {
+    "enb": ">=0.8.45"
+  },
+  "devDependencies": {
+    "jscs": "~1.2.4",
+    "jshint": "~2.4.2",
+    "enb-validate-code": "0.0.1"
+  }
+}
