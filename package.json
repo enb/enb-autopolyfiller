@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/enb-make/enb-y-i18n",
   "dependencies": {
-    "compact-tl": "0.0.2",
+    "compact-tl": "0.0.3",
     "vow": "~0.4.1",
     "vow-fs": "~0.2.3"
   },
