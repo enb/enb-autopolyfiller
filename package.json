@@ -18,7 +18,7 @@
   "homepage": "https://github.com/enb-make/enb-autopolyfiller",
   "dependencies": {
     "vow": "~0.4.1",
-    "autopolyfiller": "^1.0.10"
+    "autopolyfiller": "^1.1.1"
   },
   "peerDependencies": {
     "enb": ">=0.8.45"
