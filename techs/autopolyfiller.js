@@ -21,6 +21,8 @@
  * ```
  */
 var autopolyfiller = require('autopolyfiller');
+var File = require('enb-source-map/lib/file');
+var generateErrorMessage = require('enb-source-map/lib/error-builder').generateErrorMessage;
 
 module.exports = require('enb/lib/build-flow').create()
     .name('autopolyfiller')
@@ -30,10 +32,30 @@ module.exports = require('enb/lib/build-flow').create()
     .defineOption('excludes', [])
     .defineOption('includes', [])
     .builder(function (source) {
-        return autopolyfiller
-            .call(null, this._browsers)
-            .exclude(this._excludes)
-            .include(this._includes)
-            .add(source) + source;
+        var sourcePath = this._source;
+        var file = new File(this.node.resolvePath(this._target), true);
+        var polyfills;
+        try {
+            polyfills = autopolyfiller
+                .call(null, this._browsers)
+                .exclude(this._excludes)
+                .include(this._includes)
+                .add(source)
+                .toString();
+        } catch (e) {
+            if (e.loc) {
+                e.message = generateErrorMessage(
+                    this.node.resolvePath(this._source),
+                    source,
+                    e.message,
+                    e.loc.line,
+                    e.loc.column
+                );
+            }
+            throw e;
+        }
+        file.writeContent(polyfills);
+        file.writeFileContent(sourcePath, source);
+        return file.render();
     })
     .createTech();
