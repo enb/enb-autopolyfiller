@@ -49,7 +49,7 @@ module.exports = require('enb/lib/build-flow').create()
                     source,
                     e.message,
                     e.loc.line,
-                    e.loc.column
+                    e.loc.column + 1
                 );
             }
             throw e;
