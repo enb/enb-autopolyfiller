@@ -28,12 +28,13 @@ module.exports = require('enb/lib/build-flow').create()
     .name('autopolyfiller')
     .target('target', '?.js')
     .useSourceText('source', '?.source.js')
+    .defineOption('useSourceMap', true)
     .defineOption('browsers', [])
     .defineOption('excludes', [])
     .defineOption('includes', [])
     .builder(function (source) {
         var sourcePath = this._source;
-        var file = new File(this.node.resolvePath(this._target), true);
+        var file = new File(this.node.resolvePath(this._target), this._useSourceMap);
         var polyfills;
         try {
             polyfills = autopolyfiller
